@@ -1,0 +1,40 @@
+function cocher_tout() {
+
+    var chb = document.getElementById('monform').getElementsByTagName("input");
+
+    if(chb.length>1){ // s'il y a d'autres input que "Sélectionner tout" et "Supprimer"
+
+	// si la case "Sélectionner tout" est cochée
+
+	if(document.getElementById('tout').checked==true){
+
+            for(var i = 0; i < chb.length; i++){
+
+		if(chb[i].name.substr(0,6) == "aPayer"){
+                    chb[i].checked=true;
+                } // si le name du checkbox commence par "aPayer"
+
+            }
+
+	}
+
+	else{  // si la case "Sélectionner tout" est décochée
+
+            for(var i = 0; i< chb.length; i++){
+
+		if(chb[i].name.substr(0,6)=="aPayer"){
+                    chb[i].checked=false;
+                }
+
+            }
+
+	}
+
+    } else{ // il n'y a pas de checkbox avec id commençant par "f"
+	return;
+
+    }	
+}
+
+
+
