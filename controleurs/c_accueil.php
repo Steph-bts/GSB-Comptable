@@ -16,6 +16,16 @@
 */
 
 if($estConnecte) {
+    $fichesARembourser = $pdo->getLesFichesVisiteursAPayer();
+    $nbreFichesAPayer = count($fichesARembourser);
+
+    $fichesAValider = $pdo->getLesVisiteursAValider();
+    $nbreFichesAValider = count($fichesAValider);
+
+    $mois = getMois(date('d/m/Y'));
+    $moisPrecedent = getMoisPrecedent($mois); 
+    $fichesACloturer = $pdo->getVisiteursNonClos($moisPrecedent);
+    $nbreFichesACloturer = count($fichesACloturer);
     include 'vues/v_accueil.php';
 } else {
     include 'vues/v_connexion.php';

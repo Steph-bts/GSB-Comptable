@@ -25,7 +25,47 @@ switch($action) {
         include 'vues/v_connexion.php';
         break;
     case 'valideConnexion' : 
+         /**
+         * Vérification que les mdp sont hachés. Sinon, hashage.
+         */
+        $motsDePasses = $pdo->getLesMotsDePasseComptables();
+
+        foreach ($motsDePasses as $comptable) {
+            $mot = $comptable['mdp'];
+            $id = $comptable['id'];
+            $algo = substr($mot, 0, 4);
+            if($algo !== '$2y$') {
+                $pdo->setMdpHashComptables($id,$mot);
+            } 
+        }
+        
+        $login = verifInput($_POST['login']);
+        $mdp = verifInput($_POST['mdp']);
+
+        $comptable = $pdo->getInfosComptable($login);
+
+        if (!is_array($comptable)) {
+            ajouterErreur('Login ou mot de passe incorrect');
+            include 'vues/v_erreurs.php';
+            include 'vues/v_connexion.php';
+        } else {
+            $mdpOk = password_verify($mdp, $comptable['mdp']);
+
+            if($mdpOk) {
+                $id = $comptable['id'];
+                $nom = $comptable['nom'];
+                $prenom = $comptable['prenom'];
+                connecter($id, $nom, $prenom);
+                header('Location: index.php');
+            } else {
+                ajouterErreur('Login ou mot de passe incorrect');
+                include 'vues/v_erreurs.php';
+                include 'vues/v_connexion.php';
+            }
+        }
+    
         break;
     default : 
+        include 'vues/v_connexion.php';
         break;
 }

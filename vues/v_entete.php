@@ -54,7 +54,7 @@
                                      Accueil
                                 </a>
                             </li>
-                            <li <?php if(!$uc || $uc == 'cloture') {?>
+                            <li <?php if($uc == 'cloture') {?>
                                 class="active"
                             <?php } ?>>
                                 <a href="index.php?uc=cloture&action=cloturer">
@@ -62,7 +62,7 @@
                                      Clôture Automatique
                                 </a>
                             </li>
-                            <li <?php if(!$uc || $uc == 'validation') {?>
+                            <li <?php if($uc == 'validation') {?>
                                 class="active"
                             <?php } ?>>
                                 <a href="index.php?uc=valider&action=selectionVisiteurMois">
@@ -72,7 +72,7 @@
                                      Validation
                                 </a>
                             </li>
-                            <li <?php if(!$uc || $uc == 'paiement') {?>
+                            <li <?php if($uc == 'paiement') {?>
                                 class="active"
                             <?php } ?>>
                                 <a href="index.php?uc=paiement&action=suiviPaiement">
@@ -82,7 +82,7 @@
                                      Paiement
                                 </a>
                             </li>
-                            <li <?php if(!$uc || $uc == 'deconnexion') {?>
+                            <li <?php if($uc == 'deconnexion') {?>
                                 class="active"
                             <?php } ?>>
                                 <a href="index.php?uc=deconnexion&action=deconnecter">
