@@ -7,6 +7,7 @@
  * @category  PPE
  * @package   GSB
  * @author    Cheri Bibi - Réseau CERTA <contact@reseaucerta.org>
+ * @author    José GIL - CNED <jgil@ac-nice.fr>
  * @author    Stéphanie Otto <contact@lencodage.fr>
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA
@@ -38,12 +39,6 @@ function connecter($idComptable, $nom, $prenom)
     $_SESSION['idComptable'] = $idComptable;
     $_SESSION['nom'] = $nom;
     $_SESSION['prenom'] = $prenom;
-}
-
-function verifMdp($idComptable, $mdp) {
-    $
-    
-    $mdpOk = password_verify($mdp, $resultat['mdp']);
 }
 
 /**
@@ -301,6 +296,7 @@ function getLesDouzeDerniersMois() {
     }
     return $listeMois;
 }
+
 /* Fonction qui contrôle les entrées de l'utilisateur, et les "nettoie" si besoin */
 function verifInput($var) {
     $var = trim($var);
@@ -308,6 +304,7 @@ function verifInput($var) {
     $var = htmlspecialchars($var);
     return $var;
 }
+
 /**
  * Fonction qui prend en paramètre un mois au format aaaamm et qui retourne le
  * mois suivant au même format
