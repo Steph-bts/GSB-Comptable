@@ -40,9 +40,11 @@ switch($uc) {
     case 'accueil' : 
         include 'controleurs/c_accueil.php';
         break;
-    case 'cloture' : 
+    case 'cloture' :
+        include 'controleurs/c_cloture.php';
         break;
     case 'validation' : 
+        include 'controleurs/c_validation.php';
         break;
     case 'paiement' : 
         break;

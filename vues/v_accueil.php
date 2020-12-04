@@ -42,7 +42,7 @@
                         </a>
                     </div>   
                     <div class="col-xs-4 col-md-4">
-                        <a href="index.php?uc=valider&action=selectionVisiteurMois"
+                        <a href="index.php?uc=validation&action=selectionVisiteurMois"
                             class="btn btn-primary btn-lg" role="button">
                             <span class="glyphicon glyphicon-hand-right"></span>
                             <br><p class="overflow-visible"><br>Validation<br></p>

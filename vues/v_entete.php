@@ -65,7 +65,7 @@
                             <li <?php if($uc == 'validation') {?>
                                 class="active"
                             <?php } ?>>
-                                <a href="index.php?uc=valider&action=selectionVisiteurMois">
+                                <a href="index.php?uc=validation&action=selectionVisiteurMois">
                                     <span class="glyphicon glyphicon-hand-right">
                                         
                                     </span>
