@@ -18,7 +18,16 @@ $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 
 if(!empty($_POST['lstVisiteurs']) && !empty($_POST['lstMois'])) {
     $idVisiteur = $_POST['lstVisiteurs'];
-    $leMois = $_POST['lstMois'];
+    $leMois = $_POST['lstMois'];    
+} else {
+    $idVisiteur = filter_input(INPUT_GET, 'idVisiteur', FILTER_SANITIZE_STRING);
+    $leMois = filter_input(INPUT_GET, 'leMois', FILTER_SANITIZE_STRING);    
+}
+
+if(isset($idVisiteur) && isset($leMois)) {
+    $numAnnee = substr($leMois,0,4);
+    $numMois = substr($leMois,-2);
+    $nomPrenom = $pdo->getNomPrenomVisiteur($idVisiteur);
 }
 
 switch($action) {
@@ -47,14 +56,7 @@ switch($action) {
         }
         include 'vues/v_selectionVisiteurMois.php';
         break;
-    case 'valider' : 
-        if(!isset($idVisiteur) || !isset($leMois)) {
-            $idVisiteur = filter_input(INPUT_GET, 'idVisiteur', FILTER_SANITIZE_STRING);
-            $leMois = filter_input(INPUT_GET, 'leMois', FILTER_SANITIZE_STRING);
-        }
-        $numAnnee = substr($leMois,0,4);
-        $numMois = substr($leMois,-2);
-        $nomPrenom = $pdo->getNomPrenomVisiteur($idVisiteur);
+    case 'valider' :         
         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
         $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
         $etatFicheVisiteur = $pdo->getEtatFicheFrais($idVisiteur,$leMois);
@@ -73,84 +75,51 @@ switch($action) {
             $enCours = $montantForfait + $montantHorsForfait;
             $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
             $dateModif = dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
-        }          
-        if(!empty($_POST['corrige'])) {  
-            $lesFrais = filter_input(
-                INPUT_POST, 'lesFrais', FILTER_DEFAULT,
-                FILTER_FORCE_ARRAY
-            );
-            $lesFraisHorsForfait = filter_input(
-                INPUT_POST, 'horsForfait', FILTER_DEFAULT,
-                FILTER_FORCE_ARRAY
-            );
-            $nbJustificatifs = filter_input(INPUT_POST, 'justifs', FILTER_SANITIZE_NUMBER_INT);
-
-            if (lesQteFraisValides($lesFrais)) {
-                $pdo->majFraisForfait($idVisiteur, $leMois, $lesFrais);
-                $pdo->majFraisHorsForfait($idVisiteur, $leMois, $lesFraisHorsForfait);
-                $pdo->majNbJustificatifs($idVisiteur, $leMois, $nbJustificatifs);
-                $montantForfait = $pdo->calculFraisForfait($idVisiteur, $leMois);
-                $montantHorsForfait = $pdo->calculFraisHorsForfait($idVisiteur, $leMois);
-                $montantTotal = $montantForfait + $montantHorsForfait;
-                header('Refresh:0 ; URL=index.php?uc=validation&action=valider&idVisiteur=' . $idVisiteur . '&leMois=' . $leMois);
-            } else {
-                ajouterErreur("Les quantités des frais forfait doivent être des nombres entiers");
-                header('Refresh:5 ; URL=index.php?uc=validation&action=valider&idVisiteur=' . $idVisiteur . '&leMois=' . $leMois);
-            }  
-        }
-        
-        if(!empty($_POST['valide'])) {
-            $lesFrais = filter_input(
-                INPUT_POST, 'lesFrais', FILTER_DEFAULT,
-                FILTER_FORCE_ARRAY
-            );
-            $lesFraisHorsForfait = filter_input(
-                INPUT_POST, 'horsForfait', FILTER_DEFAULT,
-                FILTER_FORCE_ARRAY
-            );
-            $nbJustificatifs = filter_input(INPUT_POST, 'justifs', FILTER_SANITIZE_NUMBER_INT);
-            if (lesQteFraisValides($lesFrais)) {
-                $pdo->majFraisForfait($idVisiteur, $leMois, $lesFrais);
-                $pdo->majFraisHorsForfait($idVisiteur, $leMois, $lesFraisHorsForfait);
-                $pdo->majNbJustificatifs($idVisiteur, $leMois, $nbJustificatifs);
-                $montantForfait = $pdo->calculFraisForfait($idVisiteur, $leMois);
-                $montantHorsForfait = $pdo->calculFraisHorsForfait($idVisiteur, $leMois);
-                $montantTotal = $montantForfait + $montantHorsForfait;
-                $pdo->validerFrais($idVisiteur, $leMois, $montantTotal);
-                $pdo->majEtatFicheFrais($idVisiteur, $leMois, 'VA');
-                
-                header('Location:index.php?uc=validation&action=succesValidation&idVisiteur=' . $idVisiteur . '&leMois=' . $leMois);
-            } else {
-                ajouterErreur("Les quantités des frais forfait doivent être des nombres entiers");
-                header('Refresh:5 ; URL=index.php?uc=validation&action=valider&idVisiteur=' . $idVisiteur . '&leMois=' . $leMois);
-            }  
-        }
-        include 'vues/v_validation.php';
+        } 
+               
+        include 'vues/v_validationEntete.php';
+        include 'vues/v_validationForfait.php';
+        include 'vues/v_validationHorsForfait.php';  
+        include 'vues/v_validationFiche.php';
         break;
-    case 'supprimerFrais' : 
-        $idVisiteur = filter_input(INPUT_GET, 'idVisiteur', FILTER_SANITIZE_STRING);
-        $leMois = filter_input(INPUT_GET, 'leMois', FILTER_SANITIZE_STRING);
+    case 'corrigerForfait' :         
+        $lesFrais = filter_input(
+            INPUT_POST, 'lesFrais', FILTER_DEFAULT,
+            FILTER_FORCE_ARRAY
+        );       
+        $pdo->majFraisForfait($idVisiteur, $leMois, $lesFrais);        
+        header('Location:index.php?uc=validation&action=valider&idVisiteur=' . $idVisiteur . '&leMois=' . $leMois);
+        break;
+    case 'corrigerHorsForfait' :
+        $lesFraisHorsForfait = filter_input(
+            INPUT_POST, 'horsForfait', FILTER_DEFAULT,
+            FILTER_FORCE_ARRAY
+        );
+        $nbJustificatifs = filter_input(INPUT_POST, 'justifs', FILTER_SANITIZE_NUMBER_INT);
+        $pdo->majFraisHorsForfait($idVisiteur, $leMois, $lesFraisHorsForfait);
+        $pdo->majNbJustificatifs($idVisiteur, $leMois, $nbJustificatifs);
+        header('Location:index.php?uc=validation&action=valider&idVisiteur=' . $idVisiteur . '&leMois=' . $leMois);               
+        break;
+    case 'supprimerFrais' :         
         $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_STRING);
         $pdo->refuserFraisHorsForfait($idFrais);
         header('Location:index.php?uc=validation&action=valider&idVisiteur=' . $idVisiteur . '&leMois=' . $leMois);
         include 'vues/v_validation.php';
         break;
     case 'reporterFrais' :
-        $idVisiteur = filter_input(INPUT_GET, 'idVisiteur', FILTER_SANITIZE_STRING);
-        $leMois = filter_input(INPUT_GET, 'leMois', FILTER_SANITIZE_STRING);
         $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_STRING);
         $pdo->reporterFraisHorsForfait($idFrais,$leMois);
         header('Location:index.php?uc=validation&action=valider&idVisiteur=' . $idVisiteur . '&leMois=' . $leMois);
         include 'vues/v_validation.php';
         break;
     case 'succesValidation' :
-        $idVisiteur = filter_input(INPUT_GET, 'idVisiteur', FILTER_SANITIZE_STRING);
-        $leMois = filter_input(INPUT_GET, 'leMois', FILTER_SANITIZE_STRING);
-        $numAnnee = substr($leMois,0,4);
-        $numMois = substr($leMois,-2);
-        $nomPrenom = $pdo->getNomPrenomVisiteur($idVisiteur);
-        header('Refresh:5 ; URL=index.php?uc=validation&action=selectionVisiteurMois');
+        $montantForfait = $pdo->calculFraisForfait($idVisiteur, $leMois);
+        $montantHorsForfait = $pdo->calculFraisHorsForfait($idVisiteur, $leMois);
+        $enCours = $montantForfait + $montantHorsForfait;
+        $pdo->validerFrais($idVisiteur, $leMois, $enCours);
+        $pdo->majEtatFicheFrais($idVisiteur, $leMois, 'VA');
         include 'vues/v_succesValidation.php';
+        header('Refresh:5 ; URL=index.php?uc=validation&action=selectionVisiteurMois');        
         break;
     default : 
         include 'vues/v_accueil.php';
