@@ -59,11 +59,11 @@ function deconnecter()
  *
  * @return Date au format anglais aaaa-mm-jj
  */
-function dateFrancaisVersAnglais($maDate)
+/*function dateFrancaisVersAnglais($maDate)
 {
     @list($jour, $mois, $annee) = explode('/', $maDate);
     return date('Y-m-d', mktime(0, 0, 0, $mois, $jour, $annee));
-}
+}*/
 
 /**
  * Transforme une date au format format anglais aaaa-mm-jj vers le format
@@ -178,10 +178,10 @@ function estDateValide($date)
  *
  * @return Boolean vrai ou faux
  */
-function lesQteFraisValides($lesFrais)
+/*function lesQteFraisValides($lesFrais)
 {
     return estTableauEntiers($lesFrais);
-}
+}*/
 
 /**
  * Vérifie la validité des trois arguments : la date, le libellé du frais
@@ -195,7 +195,7 @@ function lesQteFraisValides($lesFrais)
  *
  * @return null
  */
-function valideInfosFrais($dateFrais, $libelle, $montant)
+/*function valideInfosFrais($dateFrais, $libelle, $montant)
 {
     if ($dateFrais == '') {
         ajouterErreur('Le champ date ne doit pas être vide');
@@ -218,7 +218,7 @@ function valideInfosFrais($dateFrais, $libelle, $montant)
     } elseif (!is_numeric($montant)) {
         ajouterErreur('Le champ montant doit être numérique');
     }
-}
+}*/
 
 /**
  * Ajoute le libellé d'une erreur au tableau des erreurs

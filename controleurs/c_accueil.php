@@ -15,6 +15,10 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
 */
 
+/**
+ * Si l'utilisateur est connecté = on récupère le nombre de fiches à clôturer,
+ * valider, et payer, pour information
+ */
 if($estConnecte) {
     $fichesARembourser = $pdo->getLesFichesVisiteursAPayer();
     $nbreFichesAPayer = count($fichesARembourser);

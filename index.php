@@ -47,8 +47,10 @@ switch($uc) {
         include 'controleurs/c_validation.php';
         break;
     case 'paiement' : 
+        include 'controleurs/c_paiement.php';
         break;
-    case 'deconnexion' : 
+    case 'deconnexion' :
+        include 'controleurs/c_deconnexion.php';
         break;
 }
 require 'vues/v_pied.php';

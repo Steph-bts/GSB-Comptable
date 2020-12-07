@@ -38,19 +38,22 @@ switch($action) {
                 $pdo->setMdpHashComptables($id,$mot);
             } 
         }
-        
+        // on récupère les infos saisie par l'utilisateur
         $login = verifInput($_POST['login']);
         $mdp = verifInput($_POST['mdp']);
-
+        
+        // on récupère le comptable identifié par son login
         $comptable = $pdo->getInfosComptable($login);
-
+        
+        // s'il n'y a pas de comptable avec ce login : msq erreur
         if (!is_array($comptable)) {
             ajouterErreur('Login ou mot de passe incorrect');
             include 'vues/v_erreurs.php';
             include 'vues/v_connexion.php';
         } else {
+            // sinon, on verifie le mdp hashé
             $mdpOk = password_verify($mdp, $comptable['mdp']);
-
+            // si le mdp est OK, création du cookie de session
             if($mdpOk) {
                 $id = $comptable['id'];
                 $nom = $comptable['nom'];
@@ -58,12 +61,12 @@ switch($action) {
                 connecter($id, $nom, $prenom);
                 header('Location: index.php');
             } else {
+                // sinon msq erreur + retour page accueil
                 ajouterErreur('Login ou mot de passe incorrect');
                 include 'vues/v_erreurs.php';
                 include 'vues/v_connexion.php';
             }
-        }
-    
+        }    
         break;
     default : 
         include 'vues/v_connexion.php';
