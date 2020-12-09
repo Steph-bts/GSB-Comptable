@@ -5,7 +5,7 @@
  * PHP Version 7
  *
  * @category  PPE
- * @package   GSB
+ * @package   GSB 
  * @author    Stéphanie Otto <contact@lencodage.fr>
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA

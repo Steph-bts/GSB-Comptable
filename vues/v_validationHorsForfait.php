@@ -5,9 +5,7 @@
  * PHP Version 7
  *
  * @category  PPE
- * @package   GSB
- * @author    Réseau CERTA <contact@reseaucerta.org>
- * @author    José GIL <jgil@ac-nice.fr>
+ * @package   GSB 
  * @author    Stéphanie Otto <contact@lencodage.fr>
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA
@@ -40,18 +38,19 @@
                 $libelle = verifInput($unFraisHorsForfait['libelle']);
                 $date = $unFraisHorsForfait['date'];
                 $montant = $unFraisHorsForfait['montant'];
-                $id = $unFraisHorsForfait['id'];
+                $id = $unFraisHorsForfait['id'];                
+                $estRefuseFrais = $pdo->estRefuse($id);
                 ?>           
                 <tr>
                     <td> <?php echo $date ?></td>
                     <td> <?php echo $libelle ?></td>
-                    <td><?php if($pdo->estRefuse($id)) { 
+                    <td><?php if($estRefuseFrais) { 
                         echo $montant;
                         } else { ?>                                        
                         <input type="number" step="0.01" name="horsForfait[<?php echo $id; ?>]" value="<?php echo $montant ?>">
                     </td>
                     <?php } ?>
-                    <td><?php if($pdo->estRefuse($id)) {?>
+                    <td><?php if($estRefuseFrais) {?>
                         <p>Ce frais a été rejeté</p>
                     <?php } else { ?>
                         <a href="index.php?uc=validation&action=supprimerFrais&idVisiteur=<?php echo $idVisiteur; ?>&leMois=<?php echo $leMois; ?>&idFrais=<?php echo $id;?>"
@@ -60,7 +59,7 @@
                             Refuser ce frais</a>
                         </td>
                     <?php } ?>
-                    <td><?php if($pdo->estRefuse($id)) {?>
+                    <td><?php if($estRefuseFrais) {?>
                         <p>Ce frais a été rejeté</p>
                     <?php } else { ?>
                         <a href="index.php?uc=validation&action=reporterFrais&idVisiteur=<?php echo $idVisiteur; ?>&leMois=<?php echo $leMois; ?>&idFrais=<?php echo $id;?>"

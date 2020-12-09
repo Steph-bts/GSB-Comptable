@@ -52,20 +52,6 @@ function deconnecter()
 }
 
 /**
- * Transforme une date au format français jj/mm/aaaa vers le format anglais
- * aaaa-mm-jj
- *
- * @param String $maDate au format  jj/mm/aaaa
- *
- * @return Date au format anglais aaaa-mm-jj
- */
-/*function dateFrancaisVersAnglais($maDate)
-{
-    @list($jour, $mois, $annee) = explode('/', $maDate);
-    return date('Y-m-d', mktime(0, 0, 0, $mois, $jour, $annee));
-}*/
-
-/**
  * Transforme une date au format format anglais aaaa-mm-jj vers le format
  * français jj/mm/aaaa
  *
@@ -172,55 +158,6 @@ function estDateValide($date)
 }
 
 /**
- * Vérifie que le tableau de frais ne contient que des valeurs numériques
- *
- * @param Array $lesFrais Tableau d'entier
- *
- * @return Boolean vrai ou faux
- */
-/*function lesQteFraisValides($lesFrais)
-{
-    return estTableauEntiers($lesFrais);
-}*/
-
-/**
- * Vérifie la validité des trois arguments : la date, le libellé du frais
- * et le montant
- *
- * Des message d'erreurs sont ajoutés au tableau des erreurs
- *
- * @param String $dateFrais Date des frais
- * @param String $libelle   Libellé des frais
- * @param Float  $montant   Montant des frais
- *
- * @return null
- */
-/*function valideInfosFrais($dateFrais, $libelle, $montant)
-{
-    if ($dateFrais == '') {
-        ajouterErreur('Le champ date ne doit pas être vide');
-    } else {
-        if (!estDatevalide($dateFrais)) {
-            ajouterErreur('Date invalide');
-        } else {
-            if (estDateDepassee($dateFrais)) {
-                ajouterErreur(
-                    "date d'enregistrement du frais dépassé, plus de 1 an"
-                );
-            }
-        }
-    }
-    if ($libelle == '') {
-        ajouterErreur('Le champ description ne peut pas être vide');
-    }
-    if ($montant == '') {
-        ajouterErreur('Le champ montant ne peut pas être vide');
-    } elseif (!is_numeric($montant)) {
-        ajouterErreur('Le champ montant doit être numérique');
-    }
-}*/
-
-/**
  * Ajoute le libellé d'une erreur au tableau des erreurs
  *
  * @param String $msg Libellé de l'erreur
@@ -265,36 +202,6 @@ function getMoisPrecedent($mois) {
         $numMoisPrecedent = '0' . $numMoisPrecedent;    
     }
     return $numAnnee . $numMoisPrecedent;
-}
-
-/**
- * Retourne un tableau contenant les 12 derniers mois
- * 
- * @return Array $les12Mois             les 12 derniers mois au format aaaamm
- */
-function getLesDouzeDerniersMois() {
-    $mois = getMois(date('d/m/Y'));
-    $numAnnee = substr($mois, 0, 4);    
-    $numMois = substr($mois, 4, 2);    
-    $listeMois = array();
-    for($i = 1; $i <= 12; $i++) {
-        $numAnnee = intval($numAnnee);
-        $numMois = intval($numMois);
-        if(($numMois - 1) === 0) {
-            $numMois = 12;
-            $numAnnee = $numAnnee - 1;
-        } else {
-            $numMois = $numMois - 1;
-        }
-        $numMois = strval($numMois);
-        $numAnnee = strval($numAnnee);
-        if (strlen($numMois) == 1) {
-            $listeMois[] = $numAnnee . '0' . $numMois;
-        } else {
-            $listeMois[] = $numAnnee . $numMois;
-        }        
-    }
-    return $listeMois;
 }
 
 /* Fonction qui contrôle les entrées de l'utilisateur, et les "nettoie" si besoin */

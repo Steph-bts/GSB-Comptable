@@ -18,7 +18,7 @@
 <div class="alert alert-danger" role="alert">
     <h5><em>"Je ne dirai pas que c'est un échec - 
             Je dirai que ça n'a pas marché"</em> 
-        <span class="small">(E.Macron le 14/10/2020)</span> : </h5><br>
+        <span class="small">(E.Macron)</span> : </h5><br>
     <?php 
     foreach($_REQUEST['erreurs'] as $erreur) {
         echo '<p>' . verifInput($erreur) . '</p>';

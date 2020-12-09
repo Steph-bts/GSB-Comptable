@@ -5,9 +5,7 @@
  * PHP Version 7
  *
  * @category  PPE
- * @package   GSB
- * @author    Réseau CERTA <contact@reseaucerta.org>
- * @author    José GIL <jgil@ac-nice.fr>
+ * @package   GSB 
  * @author    Stéphanie Otto <contact@lencodage.fr>
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA

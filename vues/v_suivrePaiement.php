@@ -1,11 +1,11 @@
 <?php
 /**
- * Controleur Paiement des Fiches de Frais
+ * Vue Paiement des Fiches de Frais
  *
  * PHP Version 7
  *
  * @category  PPE
- * @package   GSB
+ * @package   GSB 
  * @author    Stéphanie Otto <contact@lencodage.fr>
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA
@@ -75,13 +75,10 @@
                         </tbody>  
                     </table>
 
-
                     <button class="btn btn-success btnValide" type="submit">
                         Payer les fiches sélectionnées <br><br>
                           <span class="glyphicon glyphicon-eur">  </span>
                     </button>
-
-
                 </form>
         </div>
     </div>
