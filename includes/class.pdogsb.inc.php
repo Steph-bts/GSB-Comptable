@@ -1,4 +1,4 @@
-<?php
+<?php namespace GSB;
 
 /**
  * Classe d'accès aux données.
