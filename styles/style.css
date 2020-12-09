@@ -8,11 +8,11 @@ a.btn {
   white-space: initial;
 }
 
-#reSelect { 
-    display: block; 
+#reSelect {
+    display: block;
     background-color: black !important;
     margin: 0 auto 15px auto;
-    padding: 20px;    
+    padding: 20px;
 }
 
 #reSelect a{
@@ -27,7 +27,7 @@ a.btn {
 }
 
 
-.butTxtBlanc {   
+.butTxtBlanc {
     color: #fff !important;
 }
 

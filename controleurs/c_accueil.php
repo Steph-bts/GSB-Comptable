@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Controleur Accueil
  *
  * PHP Version 7
  *
  * @category  PPE
- * @package   GSB 
+ * @package   GSB
  * @author    Stéphanie Otto <contact@lencodage.fr>
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA
@@ -17,7 +18,7 @@
  * Si l'utilisateur est connecté = on récupère le nombre de fiches à clôturer,
  * valider, et payer, pour information
  */
-if($estConnecte) {
+if ($estConnecte) {
     $fichesARembourser = $pdo->getLesFichesVisiteursAPayer();
     $nbreFichesAPayer = count($fichesARembourser);
 
@@ -25,7 +26,7 @@ if($estConnecte) {
     $nbreFichesAValider = count($fichesAValider);
 
     $mois = getMois(date('d/m/Y'));
-    $moisPrecedent = getMoisPrecedent($mois); 
+    $moisPrecedent = getMoisPrecedent($mois);
     $fichesACloturer = $pdo->getVisiteursNonClos($moisPrecedent);
     $nbreFichesACloturer = count($fichesACloturer);
     include 'vues/v_accueil.php';

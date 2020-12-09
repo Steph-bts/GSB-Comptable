@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Index du projet GSB
  *
@@ -27,30 +28,30 @@ require 'vues/v_entete.php';
 
 $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
 
-if($uc && !$estConnecte) {
+if ($uc && !$estConnecte) {
     $uc = 'connexion';
-} elseif(empty($uc)) {
+} elseif (empty($uc)) {
     $uc = 'accueil';
 }
 
-switch($uc) {
-    case 'connexion' : 
-        include 'controleurs/c_connexion.php';
-        break;
-    case 'accueil' : 
-        include 'controleurs/c_accueil.php';
-        break;
-    case 'cloture' :
-        include 'controleurs/c_cloture.php';
-        break;
-    case 'validation' : 
-        include 'controleurs/c_validation.php';
-        break;
-    case 'paiement' : 
-        include 'controleurs/c_paiement.php';
-        break;
-    case 'deconnexion' :
-        include 'controleurs/c_deconnexion.php';
-        break;
+switch ($uc) {
+case 'connexion':
+    include 'controleurs/c_connexion.php';
+    break;
+case 'accueil':
+    include 'controleurs/c_accueil.php';
+    break;
+case 'cloture':
+    include 'controleurs/c_cloture.php';
+    break;
+case 'validation':
+    include 'controleurs/c_validation.php';
+    break;
+case 'paiement':
+    include 'controleurs/c_paiement.php';
+    break;
+case 'deconnexion':
+    include 'controleurs/c_deconnexion.php';
+    break;
 }
 require 'vues/v_pied.php';

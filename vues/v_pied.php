@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vue Pied de page
  *
@@ -14,6 +15,7 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
+
 ?>
         </div>
     </body>

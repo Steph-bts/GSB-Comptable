@@ -1,17 +1,19 @@
 <?php
+
 /**
  * Vue Paiement des Fiches de Frais
  *
  * PHP Version 7
  *
  * @category  PPE
- * @package   GSB 
+ * @package   GSB
  * @author    Stéphanie Otto <contact@lencodage.fr>
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
 */
+
 ?>
 <div class="panel panel-primary">
     <div class="panel-heading">
@@ -65,13 +67,12 @@
                                              Voir la fiche
                                         </a>
                                     </button></td>
-                                <td class="text-center"><input type="checkbox" name="aPayer[]" value="<?php echo $id . '&' . $mois ; ?>"></td>   
-
+                                <td class="text-center"><input type="checkbox" name="aPayer[]" value="<?php echo $id . '&' . $mois ; ?>"></td>
                             </tr>
-                            <?php 
+                            <?php
                         }
 
-                         ?>
+                        ?>
                         </tbody>  
                     </table>
 

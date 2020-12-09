@@ -1,17 +1,19 @@
 <?php
+
 /**
  * Vue frais forfait de la fiche à valider
  *
  * PHP Version 7
  *
  * @category  PPE
- * @package   GSB 
+ * @package   GSB
  * @author    Stéphanie Otto <contact@lencodage.fr>
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
 */
+
 ?>
 <div class="col-md-12">
     <form method="post" 

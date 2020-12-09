@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Fonctions pour l'application GSB
  *
@@ -188,24 +189,26 @@ function nbErreurs()
 
 /**
  * Retourne le mois précédent, au format aaaamm
- * 
+ *
  * @param String $mois aaaamm
- * 
+ *
  * @return String $mois précédent aaaamm
  */
-function getMoisPrecedent($mois) {
+function getMoisPrecedent($mois)
+{
     $numAnnee = substr($mois, 0, 4);
     $numMois = substr($mois, 4, 2);
     $numMoisPrecedent = intval($numMois) - 1;
     $numMoisPrecedent = strval($numMoisPrecedent);
-    if(strlen($numMoisPrecedent) == 1) {
-        $numMoisPrecedent = '0' . $numMoisPrecedent;    
+    if (strlen($numMoisPrecedent) == 1) {
+        $numMoisPrecedent = '0' . $numMoisPrecedent;
     }
     return $numAnnee . $numMoisPrecedent;
 }
 
 /* Fonction qui contrôle les entrées de l'utilisateur, et les "nettoie" si besoin */
-function verifInput($var) {
+function verifInput($var)
+{
     $var = trim($var);
     $var = stripslashes($var);
     $var = htmlspecialchars($var);
@@ -215,17 +218,18 @@ function verifInput($var) {
 /**
  * Fonction qui prend en paramètre un mois au format aaaamm et qui retourne le
  * mois suivant au même format
- * 
+ *
  * @param type String         $mois
- * 
+ *
  * @return type String        $mois
  */
-function getLeMoisSuivant($mois) {
-    $numAnnee = substr($mois, 0, 4);    
-    $numMois = substr($mois, 4, 2); 
+function getLeMoisSuivant($mois)
+{
+    $numAnnee = substr($mois, 0, 4);
+    $numMois = substr($mois, 4, 2);
     $numAnnee = intval($numAnnee);
     $numMois = intval($numMois);
-    if($numMois === 12) {
+    if ($numMois === 12) {
         $numMois = 1;
         $numAnnee += 1;
     } else {
@@ -233,7 +237,7 @@ function getLeMoisSuivant($mois) {
     }
     $numMois = strval($numMois);
     $numAnnee = strval($numAnnee);
-    if(strlen($numMois === 1)) {
+    if (strlen($numMois === 1)) {
         return $numAnnee . '0' . $numMois;
     } else {
         return $numAnnee . $numMois;
@@ -241,39 +245,41 @@ function getLeMoisSuivant($mois) {
 }
 
 /**
- * Fonction qui parcours un tableau avec les fiches de frais des visiteurs, 
+ * Fonction qui parcours un tableau avec les fiches de frais des visiteurs,
  * et qui extrait le montant d'une fiche pour un visiteur et un mois passé
  * en paramètres
- * 
+ *
  * @param array()       $ficheAPayer
  * @param String        $idVisiteur
  * @param String        $mois au format aaaamm
- * 
+ *
  * @return float
  */
-function getLeMontantAPayer($ficheAPayer,$idVisiteur, $mois) {
-    foreach($ficheAPayer as $fiche) {
-        if(($fiche['id'] === $idVisiteur) && ($fiche['mois'] === $mois)) {
+function getLeMontantAPayer($ficheAPayer, $idVisiteur, $mois)
+{
+    foreach ($ficheAPayer as $fiche) {
+        if (($fiche['id'] === $idVisiteur) && ($fiche['mois'] === $mois)) {
             return floatval($fiche['montant']);
         }
     }
 }
 
 /**
- * Fonction qui prend en paramètre un array multidimensionnel, et qui en 
+ * Fonction qui prend en paramètre un array multidimensionnel, et qui en
  * supprime les doublons
- * 
+ *
  * @param Array          $array : tableau duquel on veut supp les doublons
  * @param String         $key : clé sur laquelle on veut que se fasse la
  *                          sélection
  * @return Array
  */
-function unique_multidim_array($array, $key) {
+function unique_multidim_array($array, $key)
+{
     $temp_array = array();
     $i = 0;
     $key_array = array();
    
-    foreach($array as $val) {
+    foreach ($array as $val) {
         if (!in_array($val[$key], $key_array)) {
             $key_array[$i] = $val[$key];
             $temp_array[$i] = $val;
@@ -282,4 +288,3 @@ function unique_multidim_array($array, $key) {
     }
     return $temp_array;
 }
-

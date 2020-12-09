@@ -1,19 +1,25 @@
 <?php
+
 /**
  * Vue Visualisation fiche à payer
  *
  * PHP Version 7
  *
  * @category  PPE
- * @package   GSB 
+ * @package   GSB
  * @author    Stéphanie Otto <contact@lencodage.fr>
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
 */
+
 ?>
-<div class="row"><button type="button" class=btn btn-warning id="reSelect"><a href="index.php?uc=paiement&action=suiviPaiement">Retour à liste des fiches</a></button></div>
+<div class="row">
+    <button type="button" class=btn btn-warning id="reSelect">
+        <a href="index.php?uc=paiement&action=suiviPaiement">Retour à liste des fiches</a>
+    </button>
+</div>
 <div class="row">
     <div class="panel panel-primary">
         <div class="panel-heading">Fiche de frais du mois 
@@ -21,9 +27,15 @@
         <div class="panel-body">
             <strong><u>Etat :</u></strong> <?php echo $libEtat ?>
             depuis le <?php echo $dateModif ?> <br> 
-            <strong><u>Montant frais forfait : </u></strong> <?php echo number_format($montantForfait, 2, ',', ' '); ?> € <br>
-            <strong><u>Montant frais hors forfait : </u></strong> <?php echo number_format($montantHorsForfait,2, ',', ' ') ; ?> € <br>
-            <strong><u>Montant validé :</u></strong> <?php echo number_format($montantValide, 2, ',', ' ') ?> €
+            <strong>
+                <u>Montant frais forfait : </u>
+            </strong> <?php echo number_format($montantForfait, 2, ',', ' '); ?> € <br>
+            <strong>
+                <u>Montant frais hors forfait : </u>
+            </strong> <?php echo number_format($montantHorsForfait, 2, ',', ' ') ; ?> € <br>
+            <strong>
+                <u>Montant validé :</u>
+            </strong> <?php echo number_format($montantValide, 2, ',', ' ') ?> €
         </div>
     </div>    
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Gestion de la déconnexion
  *
@@ -14,6 +15,7 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
+
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 if (!$uc) {
     $uc = 'deconnexion';

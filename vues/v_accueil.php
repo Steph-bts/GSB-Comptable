@@ -1,22 +1,24 @@
 <?php
+
 /**
  * Vue page d'Accueil
  *
  * PHP Version 7
  *
  * @category  PPE
- * @package   GSB 
+ * @package   GSB
  * @author    Stéphanie Otto <contact@lencodage.fr>
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
 */
+
 ?>
 <div id="accueil">
     <h2>
-        Gestion des frais<small> - Comptable : 
-            <?php 
+        Gestion des frais<small> - Comptable :
+            <?php
             echo $_SESSION['prenom'] . ' ' . $_SESSION['nom']
             ?></small>
     </h2><br>
@@ -61,8 +63,8 @@
 <br>
 <div class="alert alert-warning" role="alert">
     <h4>Il y a : </h4>
-    <h4> - <?php echo ($nbreFichesACloturer > 0)? $nbreFichesACloturer : 'aucune' ;?> fiche(s) à clôturer</h4>
-    <h4> -  <?php echo ($nbreFichesAValider > 0)? $nbreFichesAValider : 'aucune' ?> fiche(s) à valider</h4>
-    <h4> -  <?php echo ($nbreFichesAPayer > 0)? $nbreFichesAPayer : 'aucune' ?> fiche(s) à payer</h4>
+    <h4> - <?php echo ($nbreFichesACloturer > 0) ? $nbreFichesACloturer : 'aucune' ;?> fiche(s) à clôturer</h4>
+    <h4> -  <?php echo ($nbreFichesAValider > 0) ? $nbreFichesAValider : 'aucune' ?> fiche(s) à valider</h4>
+    <h4> -  <?php echo ($nbreFichesAPayer > 0) ? $nbreFichesAPayer : 'aucune' ?> fiche(s) à payer</h4>
 </div>
 

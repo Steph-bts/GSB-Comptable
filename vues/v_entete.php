@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vue Entête
  *
@@ -14,6 +15,7 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,9 +34,9 @@
     <body>
         <div class="container">
             <?php
-            $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
-            if($estConnecte) {
-            ?>
+                $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
+            if ($estConnecte) {
+                ?>
             <div class="header">
                 <div class="row vertical-align">
                     <div class="col-md-4">
@@ -46,25 +48,37 @@
                     </div>
                     <div class="col-md-8">
                         <ul class="nav nav-pills pull-right orange" role="tablist">
-                            <li <?php if(!$uc || $uc == 'accueil') {?>
+                            <li <?php
+                            if (!$uc || $uc == 'accueil') {
+                                ?>
                                 class="active"
-                            <?php } ?>>
+                                <?php
+                            }
+                            ?>>
                                 <a href="index.php">
                                     <span class="glyphicon glyphicon-home"></span>
                                      Accueil
                                 </a>
                             </li>
-                            <li <?php if($uc == 'cloture') {?>
+                            <li <?php
+                            if ($uc == 'cloture') {
+                                ?>
                                 class="active"
-                            <?php } ?>>
+                                <?php
+                            }
+                            ?>>
                                 <a href="index.php?uc=cloture&action=cloturer">
                                     <span class="glyphicon glyphicon-folder-close"></span>
                                      Clôture Automatique
                                 </a>
                             </li>
-                            <li <?php if($uc == 'validation') {?>
+                            <li <?php
+                            if ($uc == 'validation') {
+                                ?>
                                 class="active"
-                            <?php } ?>>
+                                <?php
+                            }
+                            ?>>
                                 <a href="index.php?uc=validation&action=selectionVisiteurMois">
                                     <span class="glyphicon glyphicon-hand-right">
                                         
@@ -72,9 +86,13 @@
                                      Validation
                                 </a>
                             </li>
-                            <li <?php if($uc == 'paiement') {?>
+                            <li <?php
+                            if ($uc == 'paiement') {
+                                ?>
                                 class="active"
-                            <?php } ?>>
+                                <?php
+                            }
+                            ?>>
                                 <a href="index.php?uc=paiement&action=suiviPaiement">
                                     <span class="glyphicon glyphicon-euro">
                                         
@@ -82,9 +100,13 @@
                                      Paiement
                                 </a>
                             </li>
-                            <li <?php if($uc == 'deconnexion') {?>
+                            <li <?php
+                            if ($uc == 'deconnexion') {
+                                ?>
                                 class="active"
-                            <?php } ?>>
+                                <?php
+                            }
+                            ?>>
                                 <a href="index.php?uc=deconnexion&action=deconnecter">
                                     <span class="glyphicon glyphicon-log-out"></span>
                                      Déconnexion
@@ -94,14 +116,15 @@
                     </div>
                 </div>
             </div>
-            <?php
+                <?php
             } else {
-            ?>
+                ?>
                 <h1>
                     <img src="./images/logo.jpg" class="img-responsive" 
                          alt="Laboratoire Galaxy-Swiss Bourdin" 
                          title="Laboratoire Galaxy-Swiss Bourdin">
                 </h1>
-            <?php }
+                <?php
+            }
 
 

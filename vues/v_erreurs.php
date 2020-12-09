@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vue Page d'erreur
  *
@@ -14,13 +15,14 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
+
 ?>
 <div class="alert alert-danger" role="alert">
     <h5><em>"Je ne dirai pas que c'est un échec - 
             Je dirai que ça n'a pas marché"</em> 
         <span class="small">(E.Macron)</span> : </h5><br>
-    <?php 
-    foreach($_REQUEST['erreurs'] as $erreur) {
+    <?php
+    foreach ($_REQUEST['erreurs'] as $erreur) {
         echo '<p>' . verifInput($erreur) . '</p>';
     }
     ?>        

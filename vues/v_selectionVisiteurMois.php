@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vue Séléction du Visiteur et du Mois à Clôturer
  *
@@ -14,6 +15,7 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
 */
+
 ?>
 <div class="row">
     <div class="col-md-6">
@@ -29,17 +31,17 @@
                     foreach ($lesVisiteurs as $unVisiteur) {
                         $id = $unVisiteur['id'];
                         $nomPrenom = $unVisiteur['nom'] . ' ' . $unVisiteur['prenom'];
-                            if ($id == $visiteurASelectionner) {
+                        if ($id == $visiteurASelectionner) {
                             ?>
                                 <option selected value="<?php echo $id; ?>">
-                                <?php echo $nomPrenom ; ?> </option>
+                            <?php echo $nomPrenom ; ?> </option>
                             <?php
-                            } else {
+                        } else {
                             ?>
                                 <option value="<?php echo $id; ?>">
-                                <?php echo $nomPrenom ; ?> </option>
+                            <?php echo $nomPrenom ; ?> </option>
                             <?php
-                            }
+                        }
                     }
                     ?>   
                 </select>
@@ -49,19 +51,19 @@
                 <select id="lstMois" name="lstMois" class="form-control">
                     <?php
                     foreach ($lesMois as $unMois) {
-                            $numAnnee = substr($unMois,0,4);
-                            $numMois = substr($unMois,-2);
-                            if ($unMois == $moisASelectionner) {
-                                ?>
-                                <option selected value="<?php echo $unMois ?>">
-                                    <?php echo $numMois . '/' . $numAnnee ?> </option>
-                                <?php
-                            } else {
-                                ?>
-                                <option value="<?php echo $unMois ?>">
-                                    <?php echo $numMois . '/' . $numAnnee ?> </option>
-                                <?php
-                            }
+                        $numAnnee = substr($unMois, 0, 4);
+                        $numMois = substr($unMois, -2);
+                        if ($unMois == $moisASelectionner) {
+                            ?>
+                            <option selected value="<?php echo $unMois ?>">
+                                <?php echo $numMois . '/' . $numAnnee ?> </option>
+                            <?php
+                        } else {
+                            ?>
+                            <option value="<?php echo $unMois ?>">
+                                <?php echo $numMois . '/' . $numAnnee ?> </option>
+                            <?php
+                        }
                     }
                     ?> 
                 </select>
