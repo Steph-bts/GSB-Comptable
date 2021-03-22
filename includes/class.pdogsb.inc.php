@@ -567,7 +567,7 @@ class PdoGsb
     }
     
     /**
-     * Retourne le total des frais hors forfait pour un visiteur
+     * Retourne le total des frais hors forfait pour un Visiteur
      *
      * @param String $idVisiteur        id du visiteur
      * @param String $mois              mois au format aaaamm

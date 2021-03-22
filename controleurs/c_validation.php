@@ -126,7 +126,7 @@ case 'supprimerFrais':
     header('Location:index.php?uc=validation&action=valider&idVisiteur=' . $idVisiteur . '&leMois=' . $leMois);
     break;
 case 'reporterFrais':
-    /* cette fois le frais disparaît de la fiche en cours, et se reporte le
+    /* cette fois le frais Disparaît de la fiche en cours, et se reporte le
      * mois suivant */
     $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_STRING);
     $pdo->reporterFraisHorsForfait($idFrais, $leMois);

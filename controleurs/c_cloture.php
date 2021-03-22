@@ -39,7 +39,7 @@ case 'cloturer':
     }
     break;
 case 'succesCloture':
-    // clôture des fiches du mois précédent + création de la nouvelle fiche
+    // clôture des fiches du mois précédent + création de la nouvelle Fiche
     $nbreVisiteursClos = count($visiteurs);
     foreach ($visiteurs as $visiteur) {
         $pdo->majEtatFicheFrais($visiteur['idvisiteur'], $moisPrecedent, 'CL');

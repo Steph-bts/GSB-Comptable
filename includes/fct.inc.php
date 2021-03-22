@@ -278,7 +278,7 @@ function getLeMontantAPayer($ficheAPayer, $idVisiteur, $mois)
 }
 
 /**
- * Fonction qui prend en paramètre un array multidimensionnel, et qui en
+ * Fonction qui prend en paramètre un array Multidimensionnel, et qui en
  * supprime les doublons
  *
  * @param Array          $array : tableau duquel on veut supp les doublons

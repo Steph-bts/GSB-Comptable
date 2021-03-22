@@ -9,7 +9,7 @@
  * @package   GSB
  * @author    Stéphanie Otto <contact@lencodage.fr>
  * @copyright 2017 Réseau CERTA
- * @license   Réseau CERTA
+ * @license   réseau CERTA
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
 */
