@@ -465,7 +465,7 @@ class PdoGsb
             "SELECT idvisiteur FROM gsb_fichefrais WHERE idetat = 'CR' "
                 . "AND mois = :unMois"
         );
-        $requetePrepare->bindParam('unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->execute();
         return $requetePrepare->fetchAll();
     }
@@ -687,6 +687,7 @@ class PdoGsb
     public function reporterFraisHorsForfait($idFrais, $mois)
     {
         $moisSuivant = getLeMoisSuivant($mois);
+        echo 'mois suivant = ' . $moisSuivant . ' ';
         $requetePrepare = PdoGsb::$monPdo->prepare(
             "UPDATE gsb_lignefraishorsforfait "
                 . "SET mois = :unMois "

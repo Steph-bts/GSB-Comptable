@@ -198,7 +198,14 @@ function getMoisPrecedent($mois)
 {
     $numAnnee = substr($mois, 0, 4);
     $numMois = substr($mois, 4, 2);
-    $numMoisPrecedent = intval($numMois) - 1;
+    $numMoisPrecedent = intval($numMois);
+    if ($numMoisPrecedent > 1) {
+        $numMoisPrecedent = $numMois - 1;
+    } else {
+        $numMoisPrecedent = 12;
+        $numAnnee = intval($numAnnee) - 1;
+    }
+    $numAnnee = strval($numAnnee);
     $numMoisPrecedent = strval($numMoisPrecedent);
     if (strlen($numMoisPrecedent) == 1) {
         $numMoisPrecedent = '0' . $numMoisPrecedent;
@@ -224,24 +231,30 @@ function verifInput($var)
  * @return type String        $mois
  */
 function getLeMoisSuivant($mois)
-{
+{    
+    // éclatement de AAAAMM en numAnnee et numMois
     $numAnnee = substr($mois, 0, 4);
     $numMois = substr($mois, 4, 2);
+    // transtypage en int pour effectuer des opérations
     $numAnnee = intval($numAnnee);
-    $numMois = intval($numMois);
+    $numMois = intval($numMois);  
+    // si on est en décembre, alors mois = 1 et année = année + 1
     if ($numMois === 12) {
         $numMois = 1;
         $numAnnee += 1;
     } else {
         $numMois += 1;
     }
+    // transtypage en string pour concaténation
     $numMois = strval($numMois);
-    $numAnnee = strval($numAnnee);
-    if (strlen($numMois === 1)) {
-        return $numAnnee . '0' . $numMois;
-    } else {
-        return $numAnnee . $numMois;
-    }
+    $numAnnee = strval($numAnnee);    
+    // s'il n'y a qu'un chiffre pour le numéro de mois, ajout d'un 0 : 
+    if (strlen($numMois) === 1) {
+        $numMois = '0' . $numMois;
+        echo $numMois;
+    } 
+    // concaténation du résultat
+    return $numAnnee . $numMois;
 }
 
 /**

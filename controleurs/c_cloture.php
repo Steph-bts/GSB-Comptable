@@ -43,7 +43,6 @@ case 'succesCloture':
     $nbreVisiteursClos = count($visiteurs);
     foreach ($visiteurs as $visiteur) {
         $pdo->majEtatFicheFrais($visiteur['idvisiteur'], $moisPrecedent, 'CL');
-        $pdo->creeNouvellesLignesFrais($visiteur['idvisiteur'], $mois);
     }
     include 'vues/v_succesCloture.php';
     break;

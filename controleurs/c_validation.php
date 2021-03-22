@@ -124,7 +124,6 @@ case 'supprimerFrais':
     $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_STRING);
     $pdo->refuserFraisHorsForfait($idFrais);
     header('Location:index.php?uc=validation&action=valider&idVisiteur=' . $idVisiteur . '&leMois=' . $leMois);
-    include 'vues/v_validation.php';
     break;
 case 'reporterFrais':
     /* cette fois le frais disparaît de la fiche en cours, et se reporte le
@@ -132,7 +131,6 @@ case 'reporterFrais':
     $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_STRING);
     $pdo->reporterFraisHorsForfait($idFrais, $leMois);
     header('Location:index.php?uc=validation&action=valider&idVisiteur=' . $idVisiteur . '&leMois=' . $leMois);
-    include 'vues/v_validation.php';
     break;
 case 'succesValidation':
     /* maintenant que tout est OK, on valide, donc :
